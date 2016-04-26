@@ -100,11 +100,14 @@ class Rook(Piece):
     def can_move_to(self, column, row, m, n):
         """return list of possible positions where Rook can move from current `column` and `row`."""
         moves = []
-        for i in xrange(1, m + 1):
-            moves.append((i, column))
-        for i in xrange(1, n + 1):
-            moves.append((row, i))
-        # TODO fix implementation, which repeats origin position twice
+        m += 1
+        n += 1
+        for i in xrange(1, m):
+            if i != column:
+                moves.append((i, row))
+        for i in xrange(1, n):
+            if i != row:
+                moves.append((column, i))
         return moves
 
 
@@ -129,7 +132,7 @@ class Bishop(Piece):
             moves.append((column+i, row+i))
             moves.append((column+i, row-i))
 
-        for i in xrange(1, column ):
+        for i in xrange(1, column):
             moves.append((column-i, row+i))
             moves.append((column-i, row-i))
 
@@ -169,9 +172,18 @@ class Knight(Piece):
         return moves
 
 
-class Queen(Piece):
-    def can_move_to(self, column, row, m, n):
-        moves = []
+class Queen(Rook, Bishop):
 
     def __init__(self):
         Piece.__init__(self, 'Q')
+
+    def can_kill_piece(self, current_position, pieces_on_board, m, n):
+        return Rook.can_kill_piece(self, current_position, pieces_on_board, m, n) \
+               or Bishop.can_kill_piece(self, current_position, pieces_on_board, m, n)
+
+    def can_move_to(self, column, row, m, n):
+        moves = Rook.can_move_to(self, column, row, m, n)
+        moves += Bishop.can_move_to(self, column, row, m, n)
+        return moves
+
+
