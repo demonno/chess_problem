@@ -114,18 +114,43 @@ class Bishop(Piece):
         Piece.__init__(self, 'B')
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        pass
+        moves = self.can_move_to(current_position[0], current_position[1], m, n)
+
+        for piece in pieces_on_board:
+            if piece in moves:
+                return True
+
+        return False
 
     def can_move_to(self, column, row, m, n):
-        pass
+        moves = []
+        m += 1
+        for i in xrange(1, m - column):
+            moves.append((column+i, row+i))
+            moves.append((column+i, row-i))
 
+        for i in xrange(1, column ):
+            moves.append((column-i, row+i))
+            moves.append((column-i, row-i))
 
+        # TODO try to reuse it from King Piece or add conditions in if
+        moves = filter(lambda x: 0 < x[0] <= m and 0 < x[1] <= n, moves)
+        return moves
 
 
 class Knight(Piece):
 
     def __init__(self):
         Piece.__init__(self, 'N')
+
+    def can_kill_piece(self, current_position, pieces_on_board, m, n):
+        moves = self.can_move_to(current_position[0], current_position[1], m, n)
+
+        for piece in pieces_on_board:
+            if piece in moves:
+                return True
+
+        return False
 
     def can_move_to(self, column, row, m, n):
         moves = [
@@ -142,15 +167,6 @@ class Knight(Piece):
         # TODO try to reuse it from King Piece
         moves = filter(lambda x: 0 < x[0] <= m and 0 < x[1] <= n, moves)
         return moves
-
-    def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        moves = self.can_move_to(current_position[0], current_position[1], m, n)
-
-        for piece in pieces_on_board:
-            if piece in moves:
-                return True
-
-        return False
 
 
 class Queen(Piece):
