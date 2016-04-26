@@ -13,7 +13,7 @@ class TestRook(unittest.TestCase):
 
     def test_rook_can_move(self):
         rook_moves = self.rook.can_move_to(3, 3, 5, 5)
-
+        # TODO remove (3, 3) from list
         expected = [(3, 1),
                     (3, 2),
                     (3, 3),
@@ -26,12 +26,13 @@ class TestRook(unittest.TestCase):
                     (4, 3),
                     (5, 3),
                     ]
+        self.assertEqual(len(expected), len(rook_moves), msg="Number of movements don't match")
         for expected_position in expected:
             self.assertTrue(expected_position in rook_moves, msg='position not found: (%s, %s) ' % expected_position)
 
     def test_rook_can_move_first(self):
         rook_moves = self.rook.can_move_to(1, 1, 5, 5)
-
+        # TODO remove (1, 1) from list
         expected = [(1, 1),
                     (1, 2),
                     (1, 3),
@@ -44,6 +45,7 @@ class TestRook(unittest.TestCase):
                     (4, 1),
                     (5, 1),
                     ]
+        self.assertEqual(len(expected), len(rook_moves), msg="Number of movements don't match")
         for expected_position in expected:
             self.assertTrue(expected_position in rook_moves, msg='position not found: (%s, %s) ' % expected_position)
 
@@ -54,7 +56,7 @@ class TestRook(unittest.TestCase):
             (4, 1),
             (5, 2),
         ]
-        self.assertFalse(self.rook.can_kill_piece((3, 3), existing_pieces, 5, 5))
+        self.assertEqual(self.rook.can_kill_piece((3, 3), existing_pieces, 5, 5), False)
 
     def test_rook_can_kill(self):
         existing_pieces = [

@@ -78,4 +78,4 @@ class TestKing(unittest.TestCase):
             (3, 1),
             (3, 2)
         ]
-        self.assertFalse(self.king.can_kill_piece((1, 1), pieces, 3, 3))
+        self.assertEqual(self.king.can_kill_piece((1, 1), pieces, 3, 3), False)
