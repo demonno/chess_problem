@@ -1,6 +1,6 @@
 import unittest
 
-from peaces.figures import Bishop
+from pieces.pieces import Bishop
 
 
 class TestBishop(unittest.TestCase):

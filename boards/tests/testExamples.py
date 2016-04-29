@@ -1,7 +1,7 @@
 import unittest
 
 from boards.chess_board import ChessBoard
-from peaces.figures import King, Rook, Knight
+from pieces.pieces import King, Rook, Knight
 
 
 def r(param):

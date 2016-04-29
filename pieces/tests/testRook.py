@@ -1,6 +1,6 @@
 import unittest
 
-from peaces.figures import Rook
+from pieces.pieces import Rook
 
 
 class TestRook(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from peaces.figures import Knight
+from pieces.pieces import Knight
 
 
 class TestKnight(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from peaces.figures import King
+from pieces.pieces import King
 
 
 class TestKing(unittest.TestCase):

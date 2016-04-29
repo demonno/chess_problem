@@ -1,6 +1,6 @@
 import unittest
 
-from peaces.figures import Queen
+from pieces.pieces import Queen
 
 
 class TestQueen(unittest.TestCase):

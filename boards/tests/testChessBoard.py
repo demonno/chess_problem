@@ -2,7 +2,7 @@ import unittest
 from sets import Set
 
 from boards.chess_board import ChessBoard
-from peaces.figures import Rook, King
+from pieces.pieces import Rook, King
 
 
 class TestChessBoard(unittest.TestCase):

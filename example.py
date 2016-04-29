@@ -1,5 +1,5 @@
 from boards.chess_board import ChessBoard
-from peaces.figures import Queen, Knight, King, Bishop
+from pieces.figures import Queen, Knight, King, Bishop
 
 # b = ChessBoard(4, 4, [Rook(), Rook(), Knight(), Knight(), Knight(), Knight()])
 # b = ChessBoard(3, 3, [Rook(), King(), King(), King()])
