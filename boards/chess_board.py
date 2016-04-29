@@ -1,3 +1,9 @@
+"""
+Chess Board
+
+Generates all possible unique solutions
+"""
+
 from sets import Set
 
 
@@ -5,8 +11,8 @@ class ChessBoard(object):
     """Class used for generating solutions"""
 
     def __init__(self, m, n, pieces_to_place):
-        self.m = m
-        self.n = n
+        self.m_val = m
+        self.n_val = n
         self.board = self.init_board()
         self.pieces_to_place = pieces_to_place
         self.on_board = []
@@ -22,8 +28,7 @@ class ChessBoard(object):
 
     def init_board(self):
         """Initialize board with two dimensional array. Empty values are 0s."""
-        # noinspection PyUnusedLocal
-        return [[0 for x in range(self.n + 1)] for y in range(self.m + 1)]
+        return [[0] * (self.n_val + 1) for _ in range(self.m_val + 1)]
 
     def solve(self):
         """Solve problem from existing parameters
@@ -34,8 +39,8 @@ class ChessBoard(object):
         4. `reset()` board after each attempt of finding the solution
         """
         self.pieces_to_place.sort(key=lambda p: p.weight, reverse=True)
-        for i in xrange(1, self.m + 1):
-            for j in xrange(1, self.n + 1):
+        for i in xrange(1, self.m_val + 1):
+            for j in xrange(1, self.n_val + 1):
                 if self.place_pieces(0, i, j):
                     self.solutions.add(str(self))
                 else:
@@ -62,8 +67,8 @@ class ChessBoard(object):
         if len(self.pieces_to_place) == len(self.on_board):
             return True
 
-        for i in xrange(column, self.m + 1):
-            for j in xrange(row, self.n + 1):
+        for i in xrange(column, self.m_val + 1):
+            for j in xrange(row, self.n_val + 1):
 
                 if self.can_place(self.pieces_to_place[piece_index], i, j):
                     moves = self.apply_piece_on_board(i, j, piece_index)
@@ -83,7 +88,7 @@ class ChessBoard(object):
         """
         self.board[i][j] = self.pieces_to_place[piece_index]
         self.on_board.append((i, j))
-        moves = self.pieces_to_place[piece_index].can_move_to(i, j, self.m, self.n)
+        moves = self.pieces_to_place[piece_index].can_move_to(i, j, self.m_val, self.n_val)
         for move in moves:
             self.board[move[0]][move[1]] -= 1
         return moves
@@ -113,14 +118,13 @@ class ChessBoard(object):
 
          return True is it is safe to place piece on position
         """
-        if (column, row) not in self.on_board \
-                and self.board[column][row] >= 0 \
-                and not piece.can_kill_piece((column, row), self.on_board, self.m, self.n):
-            return True
-        else:
-            return False
+        return bool((column, row) not in self.on_board
+                    and self.board[column][row] >= 0
+                    and not piece.can_kill_piece((column, row),
+                                                 self.on_board, self.m_val, self.n_val))
 
     def number_of_solutions(self):
+        """return number of solutions"""
         return len(self.solutions)
 
     def print_solutions(self, include_quantity=False):
@@ -137,9 +141,9 @@ class ChessBoard(object):
     def __str__(self):
         """Representation for printing solution"""
         builder = []
-        for column in xrange(1, self.m + 1):
-            for row in xrange(1, self.n + 1):
-                if type(self.board[row][column] and self.board[row][column]) != int:
+        for column in xrange(1, self.m_val + 1):
+            for row in xrange(1, self.n_val + 1):
+                if not isinstance(self.board[row][column] and self.board[row][column], int):
                     builder.append(str(self.board[row][column]))
                 else:
                     builder.append('.')

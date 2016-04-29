@@ -1,3 +1,6 @@
+"""
+All classes which are used for solving chess problem is located in this file
+"""
 from abc import abstractmethod
 
 PIECE_TYPES = ['K', 'Q', 'B', 'R', 'k']
@@ -40,17 +43,17 @@ class Piece(object):
         return self._piece_type
 
     @abstractmethod
-    def can_kill_piece(self, current_position, pieces_on_board, m, n):
+    def can_kill_piece(self, current_position, pieces_on_board, m_val, n_val):
         """Check if piece can kill at least one existing piece. return True."""
 
     @abstractmethod
-    def can_move_to(self, column, row, m, n):
+    def can_move_to(self, column, row, m_val, n_val):
         """Find all coordinates where piece can move. return list of tuples."""
 
     @staticmethod
-    def filter_moves(moves, m, n):
-        """Filter moves values surrounded by 0 and m, n. return filtered list."""
-        return filter(lambda x: 0 < x[0] <= m and 0 < x[1] <= n, moves)
+    def filter_moves(moves, m_val, n_val):
+        """Filter moves values surrounded by 0 and m_val, n_val. return filtered list."""
+        return [x for x in moves if 0 < x[0] <= m_val and 0 < x[1] <= n_val]
 
 
 class King(Piece):
@@ -61,7 +64,9 @@ class King(Piece):
         self.weight = 10
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        """Check if King can kill at least one piece on board from `current_position`. return True."""
+        """Check if King can kill at least one piece on board from `current_position`.
+
+        return True."""
         moves = self.can_move_to(current_position[0], current_position[1], m, n)
 
         for piece in pieces_on_board:
@@ -72,7 +77,7 @@ class King(Piece):
 
     def can_move_to(self, column, row, m, n):
         """Determine all moves, which King can do, from `column` and `row` square
-        parameters `m`, `n` are board information
+        parameters `m_val`, `n_val` are board information
         according them moves which go out of the board are not included
 
         :param row: initial row of piece
@@ -108,14 +113,18 @@ class Rook(Piece):
         return self.piece_type
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        """Check if `Rook` can kill at least one piece on board from `current_position`. return True."""
+        """Check if `Rook` can kill at least one piece on board from `current_position`.
+
+        return True."""
         for piece in pieces_on_board:
             if piece[0] == current_position[0] or piece[1] == current_position[1]:
                 return True
         return False
 
     def can_move_to(self, column, row, m, n):
-        """Find all possible positions where `Rook` can move from current `column` and `row`. return list of tuples."""
+        """Find all possible positions where `Rook` can move from current `column` and `row`.
+
+        return list of tuples."""
         moves = []
         m += 1
         n += 1
@@ -136,7 +145,7 @@ class Bishop(Piece):
         self.weight = 30
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        """check if `Bishop` can kill at least one piece on board from `current_position` . return True."""
+        """check if `Bishop` can kill at least one piece on board from `current_position`."""
         moves = self.can_move_to(current_position[0], current_position[1], m, n)
 
         for piece in pieces_on_board:
@@ -176,7 +185,7 @@ class Knight(Piece):
         self.weight = 20
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        """check if `Knight` can kill at least one piece on board from `current_position`. return True."""
+        """check if `Knight` can kill at least one piece on board from `current_position`."""
         moves = self.can_move_to(current_position[0], current_position[1], m, n)
 
         for piece in pieces_on_board:
@@ -218,12 +227,14 @@ class Queen(Rook, Bishop):
         self.weight = 50
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
-        """check if `Queen` can kill at least one piece on board from `current_position`. return True."""
+        """check if `Queen` can kill at least one piece on board from `current_position`."""
         return Rook.can_kill_piece(self, current_position, pieces_on_board, m, n) \
             or Bishop.can_kill_piece(self, current_position, pieces_on_board, m, n)
 
     def can_move_to(self, column, row, m, n):
-        """Find all possible positions where `Queen` can move from current `column` and `row`. return list of tuples."""
+        """Find all possible positions where `Queen` can move from current `column` and `row`.
+
+        return list of tuples."""
         moves = Rook.can_move_to(self, column, row, m, n)
         moves += Bishop.can_move_to(self, column, row, m, n)
         return moves

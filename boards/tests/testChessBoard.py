@@ -22,8 +22,8 @@ class TestChessBoard(unittest.TestCase):
 
     def test_init(self):
 
-        self.assertEqual(self.board.m, self.m)
-        self.assertEqual(self.board.n, self.n)
+        self.assertEqual(self.board.m_val, self.m)
+        self.assertEqual(self.board.n_val, self.n)
         self.assertEqual(len(self.board.pieces_to_place), len(self.pieces_to_place))
         self.assertItemsEqual(self.board.board, self.init_board)
         self.assertEqual(self.board.on_board, [])
