@@ -119,6 +119,20 @@ class ChessBoard(object):
         else:
             return False
 
+    def number_of_solutions(self):
+        return len(self.solutions)
+
+    def print_solutions(self, include_quantity=False):
+        """Print all existing solutions
+
+            If include_quantity is True start printing number of solutions on first line
+        """
+        if include_quantity:
+            print self.number_of_solutions()
+
+        for solution in self.solutions:
+            print solution
+
     def __str__(self):
         """Representation for printing solution"""
         builder = []
