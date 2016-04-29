@@ -1,3 +1,5 @@
+- [![Build Status](https://travis-ci.org/demonno/chess_problem.svg?branch=master)](https://travis-ci.org/demonno/chess_problem)
+
 # Chess Challenge
 
 ## Problem
