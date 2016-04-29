@@ -9,6 +9,8 @@ class TestRook(unittest.TestCase):
 
     def test_rook_name(self):
         self.assertEquals(self.rook.piece_type, 'R')
+        self.assertEqual(repr(self.rook), 'R')
+        self.assertEquals(self.rook.weight, 40)
 
     def test_rook_can_move(self):
         rook_moves = self.rook.can_move_to(3, 3, 5, 5)

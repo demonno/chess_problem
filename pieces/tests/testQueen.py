@@ -9,6 +9,8 @@ class TestQueen(unittest.TestCase):
 
     def test_queen_name(self):
         self.assertEquals(self.queen.piece_type, 'Q')
+        self.assertEqual(repr(self.queen), 'Q')
+        self.assertEquals(self.queen.weight, 50)
 
     def test_queen_can_move(self):
         queen_moves = self.queen.can_move_to(3, 3, 5, 5)

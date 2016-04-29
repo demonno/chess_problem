@@ -7,8 +7,11 @@ class TestKing(unittest.TestCase):
     def setUp(self):
         self.king = King()
 
-    def test_king_name(self):
+    def test_king_init(self):
         self.assertEqual(self.king.piece_type, 'K')
+        self.assertEqual(repr(self.king), 'K')
+        self.assertEqual(self.king.weight, 10)
+
 
     def test_king_can_move(self):
         king_moves = self.king.can_move_to(2, 2, 4, 4)

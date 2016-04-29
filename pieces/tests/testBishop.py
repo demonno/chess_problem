@@ -7,8 +7,10 @@ class TestBishop(unittest.TestCase):
     def setUp(self):
         self.bishop = Bishop()
 
-    def test_bishop_name(self):
+    def test_bishop_init(self):
         self.assertEquals(self.bishop.piece_type, 'B')
+        self.assertEqual(repr(self.bishop), 'B')
+        self.assertEquals(self.bishop.weight, 30)
 
     def test_bishop_can_move(self):
         bishop_moves = self.bishop.can_move_to(3, 3, 5, 5)

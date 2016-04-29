@@ -8,8 +8,10 @@ class TestKnight(unittest.TestCase):
     def setUp(self):
         self.knight = Knight()
 
-    def test_knight_name(self):
+    def test_knight_init(self):
         self.assertEquals(self.knight.piece_type, 'N')
+        self.assertEqual(repr(self.knight), 'N')
+        self.assertEquals(self.knight.weight, 20)
 
     def test_knight_can_move(self):
         knight_moves = self.knight.can_move_to(3, 3, 5, 5)

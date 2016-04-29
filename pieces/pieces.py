@@ -215,7 +215,7 @@ class Queen(Rook, Bishop):
 
     def __init__(self):
         Piece.__init__(self, 'Q')
-        Piece.weight = 50
+        self.weight = 50
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """check if `Queen` can kill at least one piece on board from `current_position`. return True."""
