@@ -16,7 +16,16 @@ class Piece(object):
 
     def __init__(self, piece_type):
         """Use for identification of piece"""
+
         self._piece_type = piece_type
+        # Used for sorting pieces
+        self.weight = 0
+
+    def __str__(self):
+        return self.piece_type
+
+    def __repr__(self):
+        return self.piece_type
 
     @property
     def piece_type(self):
@@ -49,6 +58,7 @@ class King(Piece):
 
     def __init__(self):
         super(King, self).__init__('K')
+        self.weight = 10
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """Check if King can kill at least one piece on board from `current_position`. return True."""
@@ -92,6 +102,10 @@ class Rook(Piece):
 
     def __init__(self):
         super(Rook, self).__init__('R')
+        self.weight = 40
+
+    def __str__(self):
+        return self.piece_type
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """Check if `Rook` can kill at least one piece on board from `current_position`. return True."""
@@ -119,6 +133,7 @@ class Bishop(Piece):
 
     def __init__(self):
         super(Bishop, self).__init__('B')
+        self.weight = 30
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """check if `Bishop` can kill at least one piece on board from `current_position` . return True."""
@@ -158,6 +173,7 @@ class Knight(Piece):
 
     def __init__(self):
         super(Knight, self).__init__('N')
+        self.weight = 20
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """check if `Knight` can kill at least one piece on board from `current_position`. return True."""
@@ -199,6 +215,7 @@ class Queen(Rook, Bishop):
 
     def __init__(self):
         Piece.__init__(self, 'Q')
+        Piece.weight = 50
 
     def can_kill_piece(self, current_position, pieces_on_board, m, n):
         """check if `Queen` can kill at least one piece on board from `current_position`. return True."""
