@@ -69,6 +69,10 @@ Solve second example
 
 
 
+Run tests using nose
+
+    nosetests
+
 # TODO
 
 * add automatic instantiating of pieces

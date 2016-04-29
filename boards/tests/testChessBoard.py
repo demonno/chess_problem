@@ -1,4 +1,5 @@
 import unittest
+# noinspection PyDeprecation
 from sets import Set
 
 from boards.chess_board import ChessBoard
@@ -38,4 +39,3 @@ class TestChessBoard(unittest.TestCase):
     def test_init_board(self):
         res = self.board.init_board()
         self.assertEqual(res, self.init_board)
-

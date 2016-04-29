@@ -12,7 +12,6 @@ class TestKing(unittest.TestCase):
         self.assertEqual(repr(self.king), 'K')
         self.assertEqual(self.king.weight, 10)
 
-
     def test_king_can_move(self):
         king_moves = self.king.can_move_to(2, 2, 4, 4)
 

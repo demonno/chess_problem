@@ -22,6 +22,7 @@ class ChessBoard(object):
 
     def init_board(self):
         """Initialize board with two dimensional array. Empty values are 0s."""
+        # noinspection PyUnusedLocal
         return [[0 for x in range(self.n + 1)] for y in range(self.m + 1)]
 
     def solve(self):

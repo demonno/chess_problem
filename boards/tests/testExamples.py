@@ -57,6 +57,7 @@ class TestExamples(unittest.TestCase):
         self.assertEqual(r(board.solutions.pop()),
                          r(solution_four))
 
+    # noinspection PyListCreation
     def testSolutionTwo(self):
         board = ChessBoard(4, 4, self.pieces_for_solution_two)
         board.solve()
@@ -114,4 +115,3 @@ class TestExamples(unittest.TestCase):
 
         for i in board.solutions:
             self.assertEqual(r(i), r(expected_solutions.pop(0)))
-
