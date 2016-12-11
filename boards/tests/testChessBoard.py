@@ -39,3 +39,10 @@ class TestChessBoard(unittest.TestCase):
     def test_init_board(self):
         res = self.board.init_board()
         self.assertEqual(res, self.init_board)
+
+    def test_initial_number_of_solutions(self):
+        self.assertEqual(self.board.number_of_solutions(), 0)
+
+    def test_number_of_solutions(self):
+        self.board.solve()
+        self.assertEqual(self.board.number_of_solutions(), 4)
