@@ -1,4 +1,4 @@
-- [![Build Status](https://travis-ci.org/demonno/chess_problem.svg?branch=master)](https://travis-ci.org/demonno/chess_problem)
+[![Build Status](https://travis-ci.org/demonno/chess_problem.svg?branch=master)](https://travis-ci.org/demonno/chess_problem) [![Coverage Status](https://coveralls.io/repos/github/demonno/chess_problem/badge.svg?branch=master)](https://coveralls.io/github/demonno/chess_problem?branch=master)
 
 # Chess Challenge
 
