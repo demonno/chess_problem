@@ -66,12 +66,13 @@ Solve second example
     board.solve()
     board.print_solutions(include_quantity=True)
 
+Install Requirements
 
-
+    pip install -r requirements.txt
 
 Run tests using nose
 
-    nosetests
+    nosetests --with-coverage --cover-erase --cover-package=boards,pieces --cover-html
 
 # TODO
 
